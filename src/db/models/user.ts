@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
-import  bcrypt from 'bcryptjs';
-import  jwt from 'jsonwebtoken';
-import  dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { UserType } from '../../models';
 import Group from './group';
 
@@ -11,9 +11,9 @@ const secret: any = process.env.SECRET;
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
-    unique: true,
+    trim: true,
     required: true,
-    trim: true
+    unique: true
   },
   password: {
     type: String,
@@ -90,4 +90,4 @@ UserSchema.pre('remove', async function(next: any) {
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = User
+module.exports = User;
