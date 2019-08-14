@@ -3,11 +3,19 @@
     "esModuleInterop": true,
     "target": "es6",
     "module": "commonjs",
-    "declaration": true,
+    "baseUrl": "./",
     "outDir": "build",
+    "rootDir": "src",
+    "removeComments": true,
     "sourceMap": true,
     "experimentalDecorators": true,
-    "strict": false
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": [
+      "es2020"
+    ]
   },
   "exclude": [
     "src/tests",

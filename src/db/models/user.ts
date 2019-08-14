@@ -36,19 +36,19 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-UserSchema.statics.checkValidCredentials = async (email: string, pass: string) => {
+UserSchema.statics.checkValidCredentials = async (email: string, password: string) => {
   const user: any = await User.findOne({ email });
 
   if (!user) {
     throw new Error('User not found');
   }
-  const isMatch = await bcrypt.compare(pass, user.pass);
+  const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
     throw new Error('Wrong password');
   }
 
-  if (!user.status) {
+  if (!user.activated) {
     throw new Error('Not active');
   }
 
@@ -76,8 +76,8 @@ UserSchema.methods.toJSON = function() {
 //hash the plain text password before saving
 UserSchema.pre('save', async function(next: any) {
   const user: any = this;
-  if (user.isModified('pass')) {
-    user.pass = await bcrypt.hash(user.pass, 8);
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8);
   }
   next();
 });
@@ -90,4 +90,4 @@ UserSchema.pre('remove', async function(next: any) {
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+export default User

@@ -1,4 +1,5 @@
 const express = require('express');
+
 import { sendEmail } from '../../mail';
 import authenticate from '../../middleware/auth';
 const User = require('../../db/models/user');
@@ -6,17 +7,17 @@ const User = require('../../db/models/user');
 const router = new express.Router();
 
 router.post('/', async (req: any, res: any) => {
-  const user = new User(req.body);
+  const user: any = new User(req.body);
   try {
     const token = await user.newAuthToken();
     // TODO: refactor below
     // send confirmation mail
     const url = `https://the-new-place/user/verify?id=${token}`;
-    sendEmail(user.email, url);
+    const send = await sendEmail(user.email, url);
     //.assign message
     const message = 'Verification email has been sent';
 
-    res.status(201).send({ message });
+    res.status(201).send(message);
   } catch (e) {
     res.status(400).send(e.errmsg ? e.errmsg : e);
   }
@@ -25,9 +26,19 @@ router.post('/', async (req: any, res: any) => {
 router.post('/login', async (req: any, res: any) => {
   try {
     const user = await User.checkValidCredentials(req.body.email, req.body.password);
-    if (user.status) {
+    if (user.activated) {
       const token = await user.newAuthToken();
-      res.send({ user, token });
+      // get expiry date
+      const today = new Date();
+      const expires = new Date(today.setDate(today.getDate() + 30));
+      res
+        .cookie('token', token, {
+          domain: 'localhost',
+          httpOnly: true,
+          // secure:true,
+          expires
+        })
+        .send({ user, token });
     } else {
       //.assign message
       const message = 'Your account has not been verified';

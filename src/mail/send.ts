@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 import { makeEmail } from './';
 
 const dotEnv = dotenv.config();
-const login: any = process.env.MAIL_LOGIN;
-const pass: any = process.env.MAIL_PASS;
+const login: any = process.env.LOGIN;
+const pass: any = process.env.PASS;
 
-export const sendEmail = (user: string, url: string) => {
+export const sendEmail = async (user: string, url: string) => {
   let transporter = nodeMailer.createTransport({
     host: 'smtp.yandex.com',
     port: 465,
@@ -29,10 +29,14 @@ export const sendEmail = (user: string, url: string) => {
     text,
     html
   };
-  transporter.sendMail(mailOptions, (error: any, info: any) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log('Message %s sent: %s', info.messageId, info.response);
-  });
+  try {
+    const result: { messageId: string; response: string } = await transporter.sendMail(
+      mailOptions
+    );
+    console.log('Message %s sent: %s', result.messageId, result.response);
+    return result.response;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
 };

@@ -6,6 +6,7 @@ const User = require('../db/models/user');
 const dotEnv = dotenv.config();
 const secret: any = process.env.SECRET;
 
+
 const authenticate = async (req: any, res: any, next: any) => {
   try {
     const token = req
