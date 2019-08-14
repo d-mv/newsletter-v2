@@ -1,5 +1,5 @@
 import express from 'express';
-import report from './reporter';
+import report from '../reporter';
 const app: any = express;
 const router = new app.Router();
 

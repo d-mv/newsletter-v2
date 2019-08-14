@@ -4,7 +4,7 @@ import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import { UserType } from '../models';
+import { UserType } from '../../models';
 
 const dotEnv = dotenv.config();
 const secret: any = process.env.SECRET;
