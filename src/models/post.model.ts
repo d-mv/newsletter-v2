@@ -6,8 +6,11 @@ export interface PostType {
   author: string;
   url: string;
   text: string;
-  characters: number;
-  created: Date;
+  read: boolean;
+  star: boolean;
+  readTime: number;
+  pages: number;
+  published: Date;
   parsed: Date;
   sourceId: ObjectId;
   createdAt: Date;

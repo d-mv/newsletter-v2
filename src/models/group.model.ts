@@ -4,4 +4,5 @@ export interface GroupType {
   id: ObjectId;
   name: string;
   userId: ObjectId;
+  created: Date;
 }

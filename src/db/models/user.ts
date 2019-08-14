@@ -1,10 +1,9 @@
-// const mongoose = require("mongoose");
-import * as mongoose from 'mongoose';
-
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import  bcrypt from 'bcryptjs';
+import  jwt from 'jsonwebtoken';
+import  dotenv from 'dotenv';
 import { UserType } from '../../models';
+import Group from './group';
 
 const dotEnv = dotenv.config();
 const secret: any = process.env.SECRET;
@@ -19,7 +18,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     trim: true,
-    minlength: 7,
+    minLength: 6,
     required: true
   },
   tokens: [
@@ -30,7 +29,7 @@ const UserSchema = new mongoose.Schema({
       }
     }
   ],
-  status: { type: Boolean, required: true, default: false },
+  activated: { type: Boolean, required: true, default: false },
   createdAt: {
     type: Date,
     default: Date.now
@@ -85,10 +84,10 @@ UserSchema.pre('save', async function(next: any) {
 
 UserSchema.pre('remove', async function(next: any) {
   const user = this;
-  // await Post.deleteMany({ createdBy: user._id });
+  await Group.deleteMany({ userId: user._id });
   next();
 });
 
 const User = mongoose.model('User', UserSchema);
-export default User;
-// module.exports = User;
+
+module.exports = User

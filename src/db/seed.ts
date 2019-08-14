@@ -1,0 +1,1 @@
+export const dbSeed = async () => { }

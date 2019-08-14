@@ -6,10 +6,10 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import dotenv from 'dotenv';
 import './db/connect';
-import routes from './routes/routes';
 // routes
-// import userRouter from './routes/api/user';
-
+import userRoutes from './routes/api/user.routes';
+import utilsRoutes from './routes/api/utils.routes';
+import verifyRoutes from './routes/verify.routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -22,7 +22,9 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.use(express.json());
 
-// app.use('/api/users', userRouter);
+app.use('/api/users', userRoutes);
+app.use('/verify', verifyRoutes);
+app.use('/api/utils', utilsRoutes);
 
 // * React
 // //Static file declaration
