@@ -6,7 +6,7 @@ const router = new express.Router();
 router.get('/seed', async (req: any, res: any) => {
   try {
     const seed = await dbSeed();
-    res.status(201).send({ message: seed });
+    res.status(201).send({ ...seed });
   } catch (e) {
     res.status(400).send(e);
   }

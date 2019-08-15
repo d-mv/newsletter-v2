@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export interface SourceType {
-  id: ObjectId;
+  _id: ObjectId;
   name: string;
   url: string;
   groupId: ObjectId;

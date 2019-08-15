@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export interface GroupType {
-  id: ObjectId;
+  _id: ObjectId;
   name: string;
   userId: ObjectId;
   created: Date;

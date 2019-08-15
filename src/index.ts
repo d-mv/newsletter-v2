@@ -8,6 +8,7 @@ import compression from 'compression';
 import './db/connect';
 // routes
 import userRoutes from './routes/api/user.routes';
+import sourceRoutes from './routes/api/source.routes';
 import utilsRoutes from './routes/api/utils.routes';
 import verifyRoutes from './routes/verify.routes';
 
@@ -23,8 +24,10 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
+app.use('/api/sources', sourceRoutes);
 app.use('/verify', verifyRoutes);
 app.use('/api/utils', utilsRoutes);
+
 
 // * React
 //Static file declaration

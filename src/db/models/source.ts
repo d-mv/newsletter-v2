@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Post from './post';
+const Post = require('./post');
 
 const SourceSchema = new mongoose.Schema({
   name: { type: String, trim: true, minLength: 3, unique: true, required: true },
@@ -33,4 +33,4 @@ SourceSchema.virtual('posts', {
 
 const Source = mongoose.model('Source', SourceSchema);
 
-export default Source;
+module.exports = Source;

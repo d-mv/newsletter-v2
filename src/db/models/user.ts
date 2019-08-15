@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { UserType } from '../../models';
-import Group from './group';
+const Source = require('./source');
 
 const dotEnv = dotenv.config();
 const secret: any = process.env.SECRET;
@@ -84,10 +84,10 @@ UserSchema.pre('save', async function(next: any) {
 
 UserSchema.pre('remove', async function(next: any) {
   const user = this;
-  await Group.deleteMany({ userId: user._id });
+  await Source.deleteMany({ userId: user._id });
   next();
 });
 
 const User = mongoose.model('User', UserSchema);
 
-export default User
+module.exports = User;

@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export interface PostType {
-  id: ObjectId;
+  _id: ObjectId;
   title: string;
   author: string;
   url: string;

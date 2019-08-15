@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 export interface UserType {
-  id: ObjectId;
+  _id: ObjectId;
   email: string;
   password: string;
   tokens: string[];
