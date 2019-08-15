@@ -2,8 +2,9 @@ const express = require('express');
 
 import authenticate from '../../middleware/auth';
 import { ObjectID } from 'mongodb';
-import { PostType } from 'src/models';
+import { PostType, SourceType } from 'src/models';
 
+const Group = require('../../db/models/group');
 const Source = require('../../db/models/source');
 const Post = require('../../db/models/post');
 
@@ -11,13 +12,12 @@ const router = new express.Router();
 
 // Create
 router.post('/', async (req: any, res: any) => {
-  const source = new Source(req.body);
+  const group = new Group(req.body);
   try {
-    await source.save();
-    // TODO: send for update of posts
-    const sources = await Source.find({})
+    await group.save();
+    const groups = await Group.find({});
 
-    res.status(201).send(sources);
+    res.status(201).send(groups);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -25,8 +25,8 @@ router.post('/', async (req: any, res: any) => {
 // All
 router.get('/', authenticate, async (req: any, res: any) => {
   try {
-    const sources = await Source.find({});
-    res.status(201).send(sources);
+    const groups = await Group.find({});
+    res.status(201).send(groups);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -38,8 +38,8 @@ router.get('/:id', authenticate, async (req: any, res: any) => {
     res.status(404).send();
   }
   try {
-    const source = await Source.findById(_id);
-    res.status(201).send(source);
+    const group = await Group.findById(_id);
+    res.status(201).send(group);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -52,13 +52,13 @@ router.patch('/:id', authenticate, async (req: any, res: any) => {
   }
   const updates = Object.keys(req.body);
   try {
-    const source = await Source.findById(_id);
+    const group = await Source.findById(_id);
 
-    updates.forEach(update => (source[update] = req.body[update]));
-    await source.save();
+    updates.forEach(update => (group[update] = req.body[update]));
+    await group.save();
 
-    const sources = await Source.find({});
-    res.status(201).send(sources);
+    const groups = await Source.find({});
+    res.status(201).send(groups);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -70,28 +70,26 @@ router.delete('/:id', authenticate, async (req: any, res: any) => {
     res.status(404).send();
   }
   try {
-    const deleteSource = await Source.deleteOne({ _id });
-    if (!deleteSource) {
+    const deleteGroup = await Group.deleteOne({ _id });
+    if (!deleteGroup) {
       return res.status(404).send();
     }
-    const sources = await Source.find({});
-    res.status(201).send(sources);
+    const groups = await Source.find({});
+    res.status(201).send(groups);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
 });
 // Read posts for a source
-router.get('/:id/posts', authenticate, async (req: any, res: any) => {
+router.get('/:id/sources', authenticate, async (req: any, res: any) => {
   const _id = req.params.id;
   if (!ObjectID.isValid(_id)) {
     res.status(404).send();
   }
   try {
-    const posts: PostType[] = await Post.find({ sourceId: _id });
-    Object.keys(posts).forEach((_value: string, index: number) => {
-      posts[index].text = posts[index].text.slice(0, 800)+'...';
-    });
-    res.status(201).send(posts);
+    const sources: SourceType[] = await Source.find({ groupId: _id });
+
+    res.status(201).send(sources);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
