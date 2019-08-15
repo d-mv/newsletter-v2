@@ -7,12 +7,6 @@ const GroupSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-GroupSchema.pre('remove', async function(next: any) {
-  const group = this;
-  await Source.deleteMany({ groupId: group._id });
-  next();
-});
-
 GroupSchema.virtual('users', {
   ref: 'User',
   localField: 'userId',
