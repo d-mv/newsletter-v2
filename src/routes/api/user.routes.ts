@@ -7,8 +7,8 @@ const User = require('../../db/models/user');
 const router = new express.Router();
 
 router.post('/', async (req: any, res: any) => {
-  const user: any = new User(req.body);
   try {
+    const user: any = new User(req.body);
     const token = await user.newAuthToken();
     // TODO: refactor below
     // send confirmation mail
@@ -19,6 +19,7 @@ router.post('/', async (req: any, res: any) => {
 
     res.status(201).send(message);
   } catch (e) {
+    console.log(e)
     res.status(400).send(e.errmsg ? e.errmsg : e);
   }
 });

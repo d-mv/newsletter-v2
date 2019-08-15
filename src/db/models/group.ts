@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import Source from './source';
 
 const GroupSchema = new mongoose.Schema({
   name: { type: String, trim: true, minLength: 3, unique: true, required: true },
@@ -21,4 +20,5 @@ GroupSchema.virtual('sources', {
 
 const Group = mongoose.model('Group', GroupSchema);
 
-export default Group;
+// export default Group;
+module.exports = Group

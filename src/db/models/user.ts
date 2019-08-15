@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { UserType } from '../../models';
-import Source from './source';
+const Source = require('./source');
 
 const dotEnv = dotenv.config();
 const secret: any = process.env.SECRET;
@@ -90,4 +90,4 @@ UserSchema.pre('remove', async function(next: any) {
 
 const User = mongoose.model('User', UserSchema);
 
-export default User
+module.exports = User;

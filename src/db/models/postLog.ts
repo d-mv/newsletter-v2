@@ -20,4 +20,4 @@ PostLogSchema.virtual('posts', {
 
 const PostLog = mongoose.model('PostLog', PostLogSchema);
 
-export default PostLog;
+module.exports= PostLog;

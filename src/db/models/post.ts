@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import PostLog from './postLog';
+const PostLog =require( './postLog');
 
 const PostSchema = new mongoose.Schema({
   title: { type: String, trim: true, required: true },
@@ -36,4 +36,4 @@ PostSchema.virtual('postLog', {
 
 const Post = mongoose.model('Post', PostSchema);
 
-export default Post;
+module.exports=Post;
