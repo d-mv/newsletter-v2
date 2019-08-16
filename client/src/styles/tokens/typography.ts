@@ -27,6 +27,7 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   font: ${h4};
   letter-spacing: 0.05rem;
+  margin: 1.2rem 0;
 `;
 export const H5 = styled.h5`
   font: ${h5};

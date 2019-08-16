@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { DefaultButton } from './default';
 import { primary, white, accent, primaryTrans, transparent } from '../tokens/colors';
 import { button } from '../tokens/typography';
-import { buttonShadow } from '../tokens/ui';
+import { shadow } from '../tokens/ui';
 
 const PrimaryButton = styled(DefaultButton)`
   padding: 1rem 2rem 0.7rem 2rem;
@@ -13,7 +13,7 @@ const PrimaryButton = styled(DefaultButton)`
   text-transform: uppercase;
 
   &:hover {
-    box-shadow: ${buttonShadow};
+    box-shadow: ${shadow(primaryTrans)};
     border-bottom: 0.3rem solid ${accent} !important;
   }
   &:disabled {

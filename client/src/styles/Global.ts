@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import WebFont from 'webfontloader';
 // import { dark, white } from './tokens/color';
 import { fontSans, fontSerif } from './tokens/typography';
+import { black } from './tokens/colors';
 
 WebFont.load({
   google: {
@@ -12,11 +13,13 @@ WebFont.load({
 const Global = createGlobalStyle`
   :root {
     font-size: 62.5%;
-      font-family: 'Roboto Slab';
+    font-family: 'Roboto Slab';
+
   }
   html {
   scroll-behavior: smooth;
   -moz-osx-font-smoothing: grayscale;
+  color: ${black};
 }
   body{
     margin:0;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { DefaultButton } from './default';
 import { primary, white, accent, transparent, primaryTrans } from '../tokens/colors';
 import { button } from '../tokens/typography';
-import { buttonShadow, textShadow } from '../tokens/ui';
+import { textShadow } from '../tokens/ui';
 
 const SecondaryButton = styled(DefaultButton)`
   padding: 1rem 2rem 0.8rem 2rem;
@@ -25,7 +25,6 @@ const SecondaryButton = styled(DefaultButton)`
       border-bottom: 0.2rem solid ${transparent};
     }
   }
-
 `;
 
 export default SecondaryButton;

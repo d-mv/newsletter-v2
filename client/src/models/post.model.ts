@@ -1,7 +1,5 @@
-import { ObjectId } from 'mongodb';
-
 export interface PostType {
-  _id: ObjectId;
+  _id: string;
   title: string;
   author: string;
   url: string;
@@ -10,8 +8,8 @@ export interface PostType {
   star: boolean;
   readTime: number;
   pages: number;
-  published: Date;
-  parsed: Date;
-  sourceId: ObjectId;
-  createdAt: Date;
+  published: string | Date;
+  parsed: string | Date;
+  sourceId: string;
+  createdAt: string | Date;
 }

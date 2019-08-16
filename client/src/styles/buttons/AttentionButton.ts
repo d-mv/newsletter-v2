@@ -1,16 +1,8 @@
 import styled from 'styled-components';
 import { DefaultButton } from './default';
-import {
-  primary,
-  white,
-  accent,
-  attention,
-  attentionTrans,
-  primaryTrans,
-  transparent
-} from '../tokens/colors';
+import { white, attention, attentionTrans, transparent } from '../tokens/colors';
 import { button } from '../tokens/typography';
-import { buttonShadowAttn } from '../tokens/ui';
+import { shadow } from '../tokens/ui';
 
 const AttentionButton = styled(DefaultButton)`
   padding: 1rem 2rem 0.7rem 2rem;
@@ -21,7 +13,7 @@ const AttentionButton = styled(DefaultButton)`
   text-transform: uppercase;
 
   &:hover {
-    box-shadow: ${buttonShadowAttn};
+    box-shadow: ${shadow(attentionTrans)};
     border-bottom: 0.3rem solid ${white} !important;
   }
   &:disabled {

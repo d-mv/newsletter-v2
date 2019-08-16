@@ -1,6 +1,7 @@
 export const white = 'rgb(250,250,250)';
-export const black = '#353D4A';
-// export const black = 'rgb(68,68,68)';
+// export const black = '#353D4A';
+export const black = 'rgb(53, 61, 74)';
+export const blackTrans = 'rgb(53, 61, 74,0.3)';
 export const grey = '#9394a6';
 export const darkGrey = '#444';
 // export const primary = '#39819c';
