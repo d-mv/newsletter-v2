@@ -1,0 +1,12 @@
+export const white = 'rgb(250,250,250)';
+export const black = '#353D4A';
+// export const black = 'rgb(68,68,68)';
+export const grey = '#9394a6';
+export const darkGrey = '#444';
+// export const primary = '#39819c';
+export const primary = '#3e5d74';
+export const primaryTrans = 'rgba(62, 93, 116,0.3)';
+export const accent = '#05cfd8';
+export const attention = 'rgba(237, 75, 86)';
+export const attentionTrans = 'rgba(237, 75, 86,0.3)';
+export const transparent = 'rgba(0,0,0,0)';
