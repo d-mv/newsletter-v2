@@ -1,10 +1,9 @@
 export const white = 'rgb(250,250,250)';
-// export const black = '#353D4A';
+export const background = 'rgba(212,212,212)';
 export const black = 'rgb(53, 61, 74)';
 export const blackTrans = 'rgb(53, 61, 74,0.3)';
 export const grey = '#9394a6';
 export const darkGrey = '#444';
-// export const primary = '#39819c';
 export const primary = '#3e5d74';
 export const primaryTrans = 'rgba(62, 93, 116,0.3)';
 export const accent = '#05cfd8';
