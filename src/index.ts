@@ -9,6 +9,8 @@ import './db/connect';
 // routes
 import userRoutes from './routes/api/user.routes';
 import sourceRoutes from './routes/api/source.routes';
+import postRoutes from './routes/api/post.routes';
+import groupRoutes from './routes/api/group.routes';
 import utilsRoutes from './routes/api/utils.routes';
 import verifyRoutes from './routes/verify.routes';
 
@@ -24,17 +26,18 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
+app.use('/api/groups', groupRoutes);
 app.use('/api/sources', sourceRoutes);
+app.use('/api/posts', postRoutes);
 app.use('/verify', verifyRoutes);
 app.use('/api/utils', utilsRoutes);
 
-
 // * React
 //Static file declaration
-app.use(express.static(path.join(__dirname, "../client/build/")));
+app.use(express.static(path.join(__dirname, '../client/build/')));
 //build mode
-app.get("/index.html", (req: any, res: any) => {
-  res.sendFile(path.join(__dirname + "../client/build/index.html"));
+app.get('/index.html', (req: any, res: any) => {
+  res.sendFile(path.join(__dirname + '../client/build/index.html'));
 });
 // * end of React
 

@@ -2,22 +2,26 @@ const express = require('express');
 
 import authenticate from '../../middleware/auth';
 import { ObjectID } from 'mongodb';
-import { PostType } from 'src/models';
 
-const Source = require('../../db/models/source');
 const Post = require('../../db/models/post');
+const PostLog = require('../../db/models/postLog');
 
 const router = new express.Router();
 
 // Create
 router.post('/', async (req: any, res: any) => {
-  const source = new Source(req.body);
   try {
-    await source.save();
-    // TODO: send for update of posts
-    const sources = await Source.find({})
+    const log = PostLog.find({ url: req.body.url });
 
-    res.status(201).send(sources);
+    // if new
+    if (!log) {
+      const post = new Post(req.body);
+      await post.save();
+      const postLog = new PostLog({ url: post.url, postId: post._id });
+      await postLog.save();
+      const posts = await Post.find({}).sort('-publishedAt');
+      res.status(201).send(posts);
+    }
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -25,8 +29,13 @@ router.post('/', async (req: any, res: any) => {
 // All
 router.get('/', authenticate, async (req: any, res: any) => {
   try {
-    const sources = await Source.find({});
-    res.status(201).send(sources);
+    const posts = await Post.find({}).sort('-publishedAt');
+
+    Object.keys(posts).forEach((_value: string, index: number) => {
+      posts[index].text = posts[index].text.slice(0, 800)+'...';
+    });
+
+    res.status(201).send(posts);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -38,8 +47,8 @@ router.get('/:id', authenticate, async (req: any, res: any) => {
     res.status(404).send();
   }
   try {
-    const source = await Source.findById(_id);
-    res.status(201).send(source);
+    const post = await Post.findById(_id);
+    res.status(201).send(post);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -52,13 +61,13 @@ router.patch('/:id', authenticate, async (req: any, res: any) => {
   }
   const updates = Object.keys(req.body);
   try {
-    const source = await Source.findById(_id);
+    const post = await Post.findById(_id);
 
-    updates.forEach(update => (source[update] = req.body[update]));
-    await source.save();
+    updates.forEach(update => (post[update] = req.body[update]));
+    await post.save();
 
-    const sources = await Source.find({});
-    res.status(201).send(sources);
+    const posts = await Post.find({}).sort('-publishedAt');
+    res.status(201).send(posts);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
@@ -70,30 +79,15 @@ router.delete('/:id', authenticate, async (req: any, res: any) => {
     res.status(404).send();
   }
   try {
-    const deleteSource = await Source.deleteOne({ _id });
-    if (!deleteSource) {
+    const deletePost = await Post.deleteOne({ _id });
+    if (!deletePost) {
       return res.status(404).send();
     }
-    const sources = await Source.find({});
-    res.status(201).send(sources);
-  } catch (e) {
-    res.status(400).send({ message: e.toString() });
-  }
-});
-// Read posts for a source
-router.get('/:id/posts', authenticate, async (req: any, res: any) => {
-  const _id = req.params.id;
-  if (!ObjectID.isValid(_id)) {
-    res.status(404).send();
-  }
-  try {
-    const posts: PostType[] = await Post.find({ sourceId: _id });
-    Object.keys(posts).forEach((_value: string, index: number) => {
-      posts[index].text = posts[index].text.slice(0, 800)+'...';
-    });
+    const posts = await Post.find({}).sort('-publishedAt');
     res.status(201).send(posts);
   } catch (e) {
     res.status(400).send({ message: e.toString() });
   }
 });
+
 export default router;
