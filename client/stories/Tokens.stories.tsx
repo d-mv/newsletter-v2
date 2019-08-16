@@ -12,7 +12,6 @@ import {
   attention,
   attentionTrans,
   primaryTrans,
-  transparent
 } from '../src/styles/tokens/colors';
 import {
   H1,
