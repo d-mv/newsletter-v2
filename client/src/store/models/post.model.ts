@@ -13,3 +13,15 @@ export interface PostType {
   sourceId: string;
   createdAt: string | Date;
 }
+
+export interface PostState {
+  loading: boolean;
+  error: string;
+  posts: PostType[];
+}
+
+export const INITIAL_POST_STATE = {
+  loading: false,
+  error: '',
+  posts: []
+};

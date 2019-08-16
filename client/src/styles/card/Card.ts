@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { shadow, textShadow } from '../tokens/ui';
-import { blackTrans, grey } from '../tokens/colors';
-import { transition, appear } from '../tokens/animations';
+import { textShadow } from '../tokens/ui';
+import { grey } from '../tokens/colors';
+import { transition } from '../tokens/animations';
 
 export interface CProps {
   disabled: boolean;
@@ -19,7 +19,6 @@ export const Card = styled.article<CProps>`
   transition: ${transition};
 
   &:hover {
-    /* border: 1px solid grey; */
     text-shadow: ${textShadow};
   }
 `;
