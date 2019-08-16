@@ -6,8 +6,7 @@ import { white } from '../src/styles/tokens/colors';
 import PrimaryButton from '../src/styles/buttons/PrimaryButton';
 import SecondaryButton from '../src/styles/buttons/SecondaryButton';
 import AttentionButton from '../src/styles/buttons/AttentionButton';
-
-
+import PinIcon from '../src/components/Card/PinIcon';
 
 storiesOf('Atoms', module).add('Buttons', () => (
   <div
@@ -16,7 +15,8 @@ storiesOf('Atoms', module).add('Buttons', () => (
       padding: '2rem',
       display: 'flex',
       flexDirection: 'row',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      alignItems: 'center'
     }}>
     <Global />
     <div style={{ margin: '1rem' }}>
@@ -48,6 +48,12 @@ storiesOf('Atoms', module).add('Buttons', () => (
       <AttentionButton disabled>
         <span>Attention Disabled</span>
       </AttentionButton>
+    </div>
+    <div style={{ margin: '1rem' }}>
+      <PinIcon star={false} _id='0' />
+    </div>
+    <div style={{ margin: '1rem' }}>
+      <PinIcon star={true} _id='0' />
     </div>
   </div>
 ));

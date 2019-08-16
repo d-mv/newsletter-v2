@@ -1,2 +1,6 @@
 export * from './Card'
+export * from './Footer'
 export * from './Icon'
+export * from './Source'
+export * from './Text'
+export * from './Title'

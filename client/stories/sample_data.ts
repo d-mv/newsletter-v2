@@ -34,7 +34,7 @@ const sampleData: PostType[] = [
     createdAt: '2019-08-15T19:04:03.029Z'
   },
   {
-    read: true,
+    read: false,
     star: false,
     readTime: 7,
     pages: 8,

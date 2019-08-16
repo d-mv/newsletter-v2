@@ -5,11 +5,13 @@ import sampleData from './sample_data';
 
 import Global from '../src/styles/Global';
 import { H1, H2, H3, H4, H5, H6, P } from '../src/styles/tokens/typography';
-import { Card, Icon } from '../src/styles/card/';
-import { List, Line } from '../src/styles/layout';
+import { Card, Icon, Source, Footer, Text, Title } from '../src/styles/card/';
+import { List, Line, Block } from '../src/styles/layout';
 import { white } from '../src/styles/tokens/colors';
 import { Pin } from '../src/icons';
 import { data } from '../src/data';
+import PinIcon from '../src/components/Card/PinIcon';
+import { Underline } from '../src/styles/tokens/animations';
 
 const compareDates = (date1: Date, date2: Date): boolean =>
   date1.getDay() === date2.getDay() &&
@@ -44,19 +46,19 @@ storiesOf('Molecules', module).add('Card', () => (
     <Global />
     <List>
       {sampleData.map(post => (
-        <Card>
-          <Line justify='space-between' align='flex-start'>
-            <H4>{post.title}</H4>
-            <Icon>
-              <Pin star={post.star} hover={false} />
-            </Icon>
-          </Line>
-          <P>{makeSource(post.sourceId)}</P>
-          <P>{post.text.slice(0, Math.random() * 300)}</P>
-          <Line justify='space-between'>
-            <P>{makeDateFromText(post.published)}</P>
-            <P>{makeReadTime(post.readTime)}</P>
-          </Line>
+        <Card disabled={post.read}>
+          <Block justify='flex-start' align='flex-start'>
+            <Line justify='space-between' align='flex-start'>
+              <Title>{post.title}</Title>
+              <PinIcon star={post.star} _id={post._id} />
+            </Line>
+            <Source>{makeSource(post.sourceId)}</Source>
+            <Text>{post.text.slice(0, Math.random() * 300)}</Text>
+          </Block>
+          <Footer>
+            <span>{makeDateFromText(post.published)}</span>
+            <span>{makeReadTime(post.readTime)}</span>
+          </Footer>
           {
             // <P>{post.read}</P>
           }

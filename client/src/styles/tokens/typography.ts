@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const fontSans = 'Open Sans';
-export const fontSerif = 'Roboto Slab';
+export const fontSerif = 'Merriweather';
 export const fontMono = 'IBM Plex Mono';
 export const h1 = `normal 700 3rem ${fontSerif}`;
 export const h2 = `normal 700 2.5rem ${fontSerif}`;
 export const h3 = `normal 700 2.2rem ${fontSerif}`;
 export const h4 = `normal 700 2rem ${fontSerif}`;
-export const h5 = `normal 700 1.7rem ${fontSerif}`;
+export const h5 = `italic 300 1.2rem ${fontSerif}`;
 export const h6 = `normal 300 1.7rem ${fontSerif}`;
 export const p = `normal 400 1.6rem ${fontSans}`;
 export const code = `normal 400 1.5rem ${fontMono}`;
@@ -31,6 +31,7 @@ export const H4 = styled.h4`
 `;
 export const H5 = styled.h5`
   font: ${h5};
+  font-style: italic;
   letter-spacing: 0.05rem;
 `;
 export const H6 = styled.h6`

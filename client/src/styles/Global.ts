@@ -6,7 +6,7 @@ import { black } from './tokens/colors';
 
 WebFont.load({
   google: {
-    families: ['Roboto+Slab:300,400,700', 'Open+Sans:300,400', 'IBM+Plex+Mono']
+    families: ['Merriweather:300,300i,400,700', 'Open+Sans:300,400', 'IBM+Plex+Mono']
   }
 });
 
