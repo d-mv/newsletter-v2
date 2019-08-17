@@ -11,8 +11,7 @@ WebFont.load({
 const Global = createGlobalStyle`
   :root {
     font-size: 62.5%;
-    font-family: 'Merriweather';
-
+    font-family: Merriweather;
   }
   html {
   scroll-behavior: smooth;
