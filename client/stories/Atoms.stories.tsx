@@ -7,6 +7,8 @@ import PrimaryButton from '../src/styles/buttons/PrimaryButton';
 import SecondaryButton from '../src/styles/buttons/SecondaryButton';
 import AttentionButton from '../src/styles/buttons/AttentionButton';
 import PinIcon from '../src/components/Card/PinIcon';
+import Header, { TimeStamp, Title as HeaderTitle } from '../src/styles/header/';
+import Footer, { Element } from '../src/styles/footer';
 
 storiesOf('Atoms', module).add('Buttons', () => (
   <div
@@ -56,4 +58,28 @@ storiesOf('Atoms', module).add('Buttons', () => (
       <PinIcon star={true} _id='0' />
     </div>
   </div>
+));
+
+storiesOf('Atoms', module).add('Header', () => (
+  <Header>
+    <Global />
+    <HeaderTitle>title</HeaderTitle>
+    <TimeStamp>timestamp</TimeStamp>
+  </Header>
+));
+
+storiesOf('Atoms', module).add('Footer', () => (
+  <Header>
+    <Global />
+    <HeaderTitle>title</HeaderTitle>
+    <TimeStamp>timestamp</TimeStamp>
+  </Header>
+));
+storiesOf('Atoms', module).add('Footer', () => (
+  <Footer>
+    <Global />
+    <Element>published</Element>
+    <Element>parsed</Element>
+    <Element>words</Element>
+  </Footer>
 ));

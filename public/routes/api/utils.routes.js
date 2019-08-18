@@ -14,7 +14,7 @@ const router = new express.Router();
 router.get('/seed', (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         const seed = yield db_1.dbSeed();
-        res.status(201).send({ message: seed });
+        res.status(201).send(Object.assign({}, seed));
     }
     catch (e) {
         res.status(400).send(e);

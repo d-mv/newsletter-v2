@@ -5,14 +5,20 @@ import sampleData from './sample_data';
 
 import Global from '../src/styles/Global';
 import { H1, H2, H3, H4, H5, H6, P } from '../src/styles/tokens/typography';
-import { Card, Icon, Source, Footer, Text, Title } from '../src/styles/card/';
+import { Card, Icon, Source, Text, Title } from '../src/styles/card/';
 import { List, Line, Block } from '../src/styles/layout';
 import { white } from '../src/styles/tokens/colors';
 import { Pin } from '../src/icons';
 import PinIcon from '../src/components/Card/PinIcon';
 import FooterLine from '../src/components/Card/Footer';
 import { makeSource } from '../src/lib';
+import Header, { TimeStamp, Title as HeaderTitle } from '../src/styles/header/';
+import Footer, { Element } from '../src/styles/footer';
+import Article from '../src/styles/layout/Article'
 
+storiesOf('Molecules', module).add('Post', () => <Article>
+  <div><Header></Header></div>
+</Article>);
 storiesOf('Molecules', module).add('Card', () => (
   <div style={{ backgroundColor: white }}>
     <Global />

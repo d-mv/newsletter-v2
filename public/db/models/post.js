@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const postLog_1 = __importDefault(require("./postLog"));
+const PostLog = require('./postLog');
 const PostSchema = new mongoose_1.default.Schema({
     title: { type: String, trim: true, required: true },
     author: { type: String, trim: true, required: true },
@@ -30,7 +30,7 @@ const PostSchema = new mongoose_1.default.Schema({
 PostSchema.pre('remove', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const post = this;
-        yield postLog_1.default.deleteMany({ postId: post._id });
+        yield PostLog.deleteMany({ postId: post._id });
         next();
     });
 });
@@ -45,5 +45,5 @@ PostSchema.virtual('postLog', {
     foreignField: 'postId'
 });
 const Post = mongoose_1.default.model('Post', PostSchema);
-exports.default = Post;
+module.exports = Post;
 //# sourceMappingURL=post.js.map

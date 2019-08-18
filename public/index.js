@@ -11,6 +11,9 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 require("./db/connect");
 const user_routes_1 = __importDefault(require("./routes/api/user.routes"));
+const source_routes_1 = __importDefault(require("./routes/api/source.routes"));
+const post_routes_1 = __importDefault(require("./routes/api/post.routes"));
+const group_routes_1 = __importDefault(require("./routes/api/group.routes"));
 const utils_routes_1 = __importDefault(require("./routes/api/utils.routes"));
 const verify_routes_1 = __importDefault(require("./routes/verify.routes"));
 const app = express_1.default();
@@ -23,11 +26,14 @@ app.use(cookie_parser_1.default());
 app.set('view engine', 'ejs');
 app.use(express_1.default.json());
 app.use('/api/users', user_routes_1.default);
+app.use('/api/groups', group_routes_1.default);
+app.use('/api/sources', source_routes_1.default);
+app.use('/api/posts', post_routes_1.default);
 app.use('/verify', verify_routes_1.default);
 app.use('/api/utils', utils_routes_1.default);
-app.use(express_1.default.static(path_1.default.join(__dirname, "../client/build/")));
-app.get("/index.html", (req, res) => {
-    res.sendFile(path_1.default.join(__dirname + "../client/build/index.html"));
+app.use(express_1.default.static(path_1.default.join(__dirname, '../client/build/')));
+app.get('/index.html', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname + '../client/build/index.html'));
 });
 app.listen(port, () => {
     console.log('server is up on ' + port);

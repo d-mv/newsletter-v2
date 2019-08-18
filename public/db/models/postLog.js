@@ -21,5 +21,5 @@ PostLogSchema.virtual('posts', {
     foreignField: '_id'
 });
 const PostLog = mongoose_1.default.model('PostLog', PostLogSchema);
-exports.default = PostLog;
+module.exports = PostLog;
 //# sourceMappingURL=postLog.js.map

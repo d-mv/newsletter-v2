@@ -15,7 +15,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const group_1 = __importDefault(require("./group"));
+const Source = require('./source');
 const dotEnv = dotenv_1.default.config();
 const secret = process.env.SECRET;
 const UserSchema = new mongoose_1.default.Schema({
@@ -87,10 +87,10 @@ UserSchema.pre('save', function (next) {
 UserSchema.pre('remove', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = this;
-        yield group_1.default.deleteMany({ userId: user._id });
+        yield Source.deleteMany({ userId: user._id });
         next();
     });
 });
 const User = mongoose_1.default.model('User', UserSchema);
-exports.default = User;
+module.exports = User;
 //# sourceMappingURL=user.js.map

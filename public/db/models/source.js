@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
-const post_1 = __importDefault(require("./post"));
+const Post = require('./post');
 const SourceSchema = new mongoose_1.default.Schema({
     name: { type: String, trim: true, minLength: 3, unique: true, required: true },
     url: { type: String, trim: true, minLength: 3, unique: true, required: true },
@@ -23,7 +23,7 @@ const SourceSchema = new mongoose_1.default.Schema({
 SourceSchema.pre('remove', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const source = this;
-        yield post_1.default.deleteMany({ sourceId: source._id });
+        yield Post.deleteMany({ sourceId: source._id });
         next();
     });
 });
@@ -43,5 +43,5 @@ SourceSchema.virtual('posts', {
     foreignField: 'sourceId'
 });
 const Source = mongoose_1.default.model('Source', SourceSchema);
-exports.default = Source;
+module.exports = Source;
 //# sourceMappingURL=source.js.map

@@ -38,11 +38,11 @@ storiesOf('Tokens', module).add('Color', () => (
     <P style={{ color: black, margin: '0.5rem 1rem' }}>black</P>
     <P style={{ color: darkGrey, margin: '0.5rem 1rem' }}>dark grey</P>
     <P style={{ color: grey, margin: '0.5rem 1rem' }}>grey</P>
-    <P style={{ color: primary, margin: '0.5rem 1rem' }}>black</P>
-    <P style={{ color: primaryTrans, margin: '0.5rem 1rem' }}>dark grey</P>
-    <P style={{ color: accent, margin: '0.5rem 1rem' }}>grey</P>
-    <P style={{ color: attention, margin: '0.5rem 1rem' }}>black</P>
-    <P style={{ color: attentionTrans, margin: '0.5rem 1rem' }}>dark grey</P>
+    <P style={{ color: primary, margin: '0.5rem 1rem' }}>primary</P>
+    <P style={{ color: primaryTrans, margin: '0.5rem 1rem' }}>primaryTrans</P>
+    <P style={{ color: accent, margin: '0.5rem 1rem' }}>accent</P>
+    <P style={{ color: attention, margin: '0.5rem 1rem' }}>attention</P>
+    <P style={{ color: attentionTrans, margin: '0.5rem 1rem' }}>attentionTrans</P>
   </div>
 ));
 storiesOf('Tokens', module).add('Typography', () => (

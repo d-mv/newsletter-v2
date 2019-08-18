@@ -17,8 +17,8 @@ const auth_1 = __importDefault(require("../../middleware/auth"));
 const User = require('../../db/models/user');
 const router = new express.Router();
 router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const user = new User(req.body);
     try {
+        const user = new User(req.body);
         const token = yield user.newAuthToken();
         const url = `https://the-new-place/user/verify?id=${token}`;
         const send = yield mail_1.sendEmail(user.email, url);
@@ -26,6 +26,7 @@ router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
         res.status(201).send(message);
     }
     catch (e) {
+        console.log(e);
         res.status(400).send(e.errmsg ? e.errmsg : e);
     }
 }));
