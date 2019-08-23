@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const fontSans = 'Open Sans';
-export const fontSerif = 'Merriweather';
-export const fontMono = 'IBM Plex Mono';
+export const fontSans = 'Open Sans, Helvetica, Arial';
+export const fontSerif = 'Merriweather,Times New Roman';
+export const fontMono = 'IBM Plex Mono,Monace,Courier';
 export const h1 = `normal 700 3rem ${fontSerif}`;
 export const h2 = `normal 700 2.5rem ${fontSerif}`;
 export const h3 = `normal 700 2.2rem ${fontSerif}`;
@@ -12,6 +12,8 @@ export const h6 = `normal 300 1.7rem ${fontSerif}`;
 export const p = `normal 400 1.6rem ${fontSans}`;
 export const code = `normal 400 1.5rem ${fontMono}`;
 export const button = `normal 400 1.6rem ${fontSans}`;
+export const placeholder = `italic 300 1.5rem ${fontSans}`;
+export const label = `normal 700 1.8rem ${fontSerif}`;
 
 export const H1 = styled.h1`
   font: ${h1};

@@ -14,11 +14,44 @@ import FooterLine from '../src/components/Card/Footer';
 import { makeSource } from '../src/lib';
 import Header, { TimeStamp, Title as HeaderTitle } from '../src/styles/header/';
 import Footer, { Element } from '../src/styles/footer';
-import Article from '../src/styles/layout/Article'
+import { Article, Text as PostText } from '../src/styles/layout';
+import { Input, Label } from '../src/styles/form';
 
-storiesOf('Molecules', module).add('Post', () => <Article>
-  <div><Header></Header></div>
-</Article>);
+storiesOf('Molecules', module).add('Post', () => (
+  <Article>
+    <Global />
+    <div>
+      <Header>
+        <HeaderTitle>title</HeaderTitle>
+        <TimeStamp>timestamp</TimeStamp>
+      </Header>
+      <PostText>
+        Consectetur qui officia mollit enim nulla consectetur qui incididunt enim qui
+        mollit eiusmod. Quis veniam do mollit quis sint incididunt sunt pariatur ullamco
+        ex labore. Eu incididunt sit minim cillum proident adipisicing fugiat nostrud eu
+        ut ad nostrud. Commodo duis reprehenderit tempor sint consectetur adipisicing
+        quis. Eiusmod tempor non aute aliquip laboris aute consequat aliqua et
+        exercitation magna commodo quis officia. Consectetur qui officia mollit enim nulla
+        consectetur qui incididunt enim qui mollit eiusmod. Quis veniam do mollit quis
+        sint incididunt sunt pariatur ullamco ex labore. Eu incididunt sit minim cillum
+        proident adipisicing fugiat nostrud eu ut ad nostrud. Commodo duis reprehenderit
+        tempor sint consectetur adipisicing quis. Eiusmod tempor non aute aliquip laboris
+        aute consequat aliqua et exercitation magna commodo quis officia. Consectetur qui
+        officia mollit enim nulla consectetur qui incididunt enim qui mollit eiusmod. Quis
+        veniam do mollit quis sint incididunt sunt pariatur ullamco ex labore. Eu
+        incididunt sit minim cillum proident adipisicing fugiat nostrud eu ut ad nostrud.
+        Commodo duis reprehenderit tempor sint consectetur adipisicing quis. Eiusmod
+        tempor non aute aliquip laboris aute consequat aliqua et exercitation magna
+        commodo quis officia.
+      </PostText>
+    </div>
+    <Footer>
+      <Element>published</Element>
+      <Element>parsed</Element>
+      <Element>words</Element>
+    </Footer>
+  </Article>
+));
 storiesOf('Molecules', module).add('Card', () => (
   <div style={{ backgroundColor: white }}>
     <Global />
@@ -37,5 +70,15 @@ storiesOf('Molecules', module).add('Card', () => (
         </Card>
       ))}
     </List>
+  </div>
+));
+
+storiesOf('Molecules', module).add('Form', () => (
+  <div>
+    <Global />
+      <Line justify='flex-start'>
+        <Label>input 1</Label>
+        <Input placeholder='please, input text' />
+      </Line>
   </div>
 ));

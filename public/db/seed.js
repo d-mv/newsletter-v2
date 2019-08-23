@@ -55,7 +55,8 @@ const createData = (groups) => __awaiter(this, void 0, void 0, function* () {
                         readTime: Math.ceil(Math.random() * 10),
                         pages: Math.ceil(Math.random() * 10),
                         published: faker_1.default.date.past(0),
-                        sourceId: newSource._id
+                        sourceId: newSource._id,
+                        userId: group.userId
                     });
                     yield newPost.save();
                     const newLog = new PostLog({
@@ -76,11 +77,8 @@ exports.dbSeed = () => __awaiter(this, void 0, void 0, function* () {
     try {
         const users = yield User.find({});
         let groups = yield Group.find({});
-        if (groups.length === 0) {
-            console.log('Creating groups...');
+        if (groups.length === 0)
             groups = yield createGroups(users);
-            console.log('Groups created.');
-        }
         yield createData(groups);
         return { message: 'Seeding is done' };
     }

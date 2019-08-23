@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
-const Article = styled.article``;
-
-export default Article;
+export const Article = styled.article`
+height:${window.innerHeight};
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+`;

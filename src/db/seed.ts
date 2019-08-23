@@ -44,7 +44,8 @@ const createData = async (groups: GroupType[]) => {
             readTime: Math.ceil(Math.random() * 10),
             pages: Math.ceil(Math.random() * 10),
             published: faker.date.past(0),
-            sourceId: newSource._id
+            sourceId: newSource._id,
+            userId: group.userId
           });
           await newPost.save();
           const newLog = new PostLog({
@@ -65,11 +66,7 @@ export const dbSeed = async () => {
   try {
     const users = await User.find({});
     let groups = await Group.find({});
-    if (groups.length === 0) {
-      console.log('Creating groups...');
-      groups = await createGroups(users);
-      console.log('Groups created.');
-    }
+    if (groups.length === 0) groups = await createGroups(users);
     await createData(groups);
     return { message: 'Seeding is done' };
   } catch (e) {

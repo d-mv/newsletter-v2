@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { DefaultButton } from './default';
-import { primary, white, accent, transparent, primaryTrans } from '../tokens/colors';
+import { primary, accent, transparent, primaryTrans } from '../tokens/colors';
 import { button } from '../tokens/typography';
 import { textShadow } from '../tokens/ui';
 
 const SecondaryButton = styled(DefaultButton)`
   padding: 1rem 2rem 0.8rem 2rem;
-  background-color: ${white};
+  background:none;
   color: ${primary};
   font: ${button};
   span {

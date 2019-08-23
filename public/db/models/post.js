@@ -25,6 +25,7 @@ const PostSchema = new mongoose_1.default.Schema({
     published: { type: Date, required: true, default: Date.now },
     parsed: { type: Date, required: true, default: Date.now },
     sourceId: { type: mongoose_1.default.Schema.Types.ObjectId, required: true, ref: 'Source' },
+    userId: { type: mongoose_1.default.Schema.Types.ObjectId, required: true, ref: 'User' },
     createdAt: { type: Date, required: true, default: Date.now }
 });
 PostSchema.pre('remove', function (next) {
@@ -37,6 +38,11 @@ PostSchema.pre('remove', function (next) {
 PostSchema.virtual('sources', {
     ref: 'Source',
     localField: 'sourceId',
+    foreignField: '_id'
+});
+PostSchema.virtual('users', {
+    ref: 'User',
+    localField: 'userId',
     foreignField: '_id'
 });
 PostSchema.virtual('postLog', {

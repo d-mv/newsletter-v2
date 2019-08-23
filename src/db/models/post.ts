@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const PostLog =require( './postLog');
+const PostLog = require('./postLog');
 
 const PostSchema = new mongoose.Schema({
   title: { type: String, trim: true, required: true },
@@ -13,6 +13,7 @@ const PostSchema = new mongoose.Schema({
   published: { type: Date, required: true, default: Date.now },
   parsed: { type: Date, required: true, default: Date.now },
   sourceId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Source' },
+  userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
   createdAt: { type: Date, required: true, default: Date.now }
 });
 
@@ -28,6 +29,12 @@ PostSchema.virtual('sources', {
   foreignField: '_id'
 });
 
+PostSchema.virtual('users', {
+  ref: 'User',
+  localField: 'userId',
+  foreignField: '_id'
+});
+
 PostSchema.virtual('postLog', {
   ref: 'PostLog',
   localField: '_id',
@@ -36,4 +43,4 @@ PostSchema.virtual('postLog', {
 
 const Post = mongoose.model('Post', PostSchema);
 
-module.exports=Post;
+module.exports = Post;

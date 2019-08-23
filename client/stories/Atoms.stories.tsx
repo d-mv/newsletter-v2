@@ -9,6 +9,7 @@ import AttentionButton from '../src/styles/buttons/AttentionButton';
 import PinIcon from '../src/components/Card/PinIcon';
 import Header, { TimeStamp, Title as HeaderTitle } from '../src/styles/header/';
 import Footer, { Element } from '../src/styles/footer';
+import {Input} from '../src/styles/form'
 
 storiesOf('Atoms', module).add('Buttons', () => (
   <div
@@ -69,17 +70,16 @@ storiesOf('Atoms', module).add('Header', () => (
 ));
 
 storiesOf('Atoms', module).add('Footer', () => (
-  <Header>
-    <Global />
-    <HeaderTitle>title</HeaderTitle>
-    <TimeStamp>timestamp</TimeStamp>
-  </Header>
-));
-storiesOf('Atoms', module).add('Footer', () => (
   <Footer>
     <Global />
     <Element>published</Element>
     <Element>parsed</Element>
     <Element>words</Element>
   </Footer>
+));
+storiesOf('Atoms', module).add('Form', () => (
+  <div>
+    <Global />
+    <Input />
+  </div>
 ));
