@@ -39,7 +39,7 @@ app.use('/api/utils', utilsRoutes);
 //Static file declaration
 app.use(express.static(path.join(__dirname, '../client/build/')));
 //build mode
-app.get('/index.html', (req: any, res: any) => {
+app.get('/index.html', (req: express.Request, res: express.Response) => {
   res.sendFile(path.join(__dirname + '../client/build/index.html'));
 });
 // * end of React

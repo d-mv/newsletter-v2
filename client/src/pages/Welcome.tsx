@@ -1,6 +1,10 @@
 import React from 'react';
 import Form from '../components/Auth';
 
-const Welcome = () => <Form />;
+const Welcome = () => (
+  <div>
+    <Form />
+  </div>
+);
 
 export default Welcome;

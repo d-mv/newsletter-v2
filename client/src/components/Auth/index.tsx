@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { AppState } from '../../store/models/appState.model';
 
-import { Block, Line, Spacer } from '../../styles/layout';
+import { Block, Line, Spacer, Column } from '../../styles/layout';
 import { Label, Input } from '../../styles/form';
 import PrimaryButton from '../../styles/buttons/PrimaryButton';
 import SecondaryButton from '../../styles/buttons/SecondaryButton';
@@ -13,7 +13,10 @@ import { AuthForm, AuthState, AuthObject } from '../../store/models';
 import { typingForm, login } from '../../store/actions';
 interface FProps {
   form: AuthForm;
-  auth: AuthState;
+  auth: {};
+  message: string;
+  loading: boolean;
+  status: boolean;
   typingForm: (arg0: { [index: string]: string }) => void;
   login: (arg0: AuthObject) => void;
 }
@@ -33,8 +36,6 @@ const Form = ({ form, typingForm, auth, login }: FProps) => {
   const handleSecondPassword = (password: ChangeEvent<HTMLInputElement>) =>
     setSecondPassword(password.target.value);
   const handleSubmit = () => login(form);
-
-console.log(auth)
 
   useEffect(() => {
     if (isLogin) {
@@ -58,8 +59,9 @@ console.log(auth)
     <Center width='70%'>
       <Spacer margin={1} />
       <Block justify='center' align='center'>
-        <Center width='50%'>
-          <Line justify='flex-end'>
+        {/* <Center width='50%'> */}
+        <Column justify='space-around' align='center'>
+          <Line justify='space-between'>
             <Label>Email</Label>
             <Input
               placeholder='you@email.com'
@@ -68,7 +70,7 @@ console.log(auth)
               type='email'
             />
           </Line>
-          <Line justify='flex-end'>
+          <Line justify='space-between'>
             <Label>Password</Label>
             <Input
               attention={!isLogin && form.password !== secondPassword}
@@ -78,19 +80,20 @@ console.log(auth)
               type='password'
             />
           </Line>
-          {!isLogin && (
-            <Line justify='flex-end'>
-              <Label>Repeat Password</Label>
-              <Input
-                attention={!isLogin && form.password !== secondPassword}
-                placeholder='******'
-                value={secondPassword}
-                onChange={handleSecondPassword}
-                type='password'
-              />
-            </Line>
-          )}
-        </Center>
+        </Column>
+        {!isLogin && (
+          <Line justify='center'>
+            <Label>Repeat Password</Label>
+            <Input
+              attention={!isLogin && form.password !== secondPassword}
+              placeholder='******'
+              value={secondPassword}
+              onChange={handleSecondPassword}
+              type='password'
+            />
+          </Line>
+        )}
+        {/* </Center> */}
         <Spacer margin={1} />
         <StringButton
           label={isLogin ? 'No account? Register here.' : 'Already registered? Log in.'}
@@ -112,7 +115,10 @@ console.log(auth)
 
 const mapStateToProps = (state: AppState) => ({
   form: state.auth.form,
-  auth: state.auth
+  auth: state.auth.auth,
+  message: state.auth.message,
+  status: state.auth.status,
+  loading: state.auth.loading
 });
 
 export default connect(

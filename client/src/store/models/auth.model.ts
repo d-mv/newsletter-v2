@@ -8,13 +8,15 @@ export interface AuthState {
   form: AuthForm;
   auth: {};
   loading: boolean;
-  error: string;
+  message: string;
+  status: boolean;
 }
 export const INITIAL_AUTH_STATE: AuthState = {
-  form: EmptyAuthForm,
+  form:EmptyAuthForm,
   auth: {},
   loading: false,
-  error: ''
+  message:'',
+  status: false
 };
 
 export interface AuthObject {
